@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="backmon" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.allpiper.backmon.entity.backup.BackupSphere</class>
+        <class>com.allpiper.backmon.entity.backup.BackupTarget</class>
+        <class>com.allpiper.backmon.entity.backup.BackupFolder</class>
+        <class>com.allpiper.backmon.entity.backup.BackupFile</class>
+        <class>com.allpiper.backmon.entity.notification.NotificationReceiver</class>
+        <class>com.allpiper.backmon.fetcher.FileDataFetcher</class>
+        <class>com.allpiper.backmon.entity.backup.check.BackupCheck</class>
+    </persistence-unit>
+</persistence>

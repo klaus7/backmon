@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://backupTargetBrowse.caption"
+        focusComponent="backupTargetsTable"
+        messagesPack="com.allpiper.backmon.web.screens.backuptarget">
+    <data readOnly="true">
+        <collection id="backupTargetsDc"
+                    class="com.allpiper.backmon.entity.backup.BackupTarget">
+            <view extends="_local">
+                <property name="folders" fetch="JOIN" view="_base"/>
+            </view>
+            <loader id="backupTargetsDl">
+                <query>
+                    <![CDATA[select e from backmon_BackupTarget e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="backupTargetsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="backupTargetsTable"
+                dataLoader="backupTargetsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="backupTargetsTable"
+                    width="100%"
+                    dataContainer="backupTargetsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="fetchFiles" caption="msg://fetchFiles" trackSelection="true"/>
+            </actions>
+            <columns>
+                <column id="active"/>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="fetchFilesBtn" action="backupTargetsTable.fetchFiles" stylename="friendly"/>
+                <button id="createBtn" action="backupTargetsTable.create"/>
+                <button id="editBtn" action="backupTargetsTable.edit"/>
+                <button id="removeBtn" action="backupTargetsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

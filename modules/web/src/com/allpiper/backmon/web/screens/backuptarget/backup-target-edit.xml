@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://backupTargetEdit.caption"
+        focusComponent="form"
+        messagesPack="com.allpiper.backmon.web.screens.backuptarget">
+    <data>
+        <instance id="backupTargetDc"
+                  class="com.allpiper.backmon.entity.backup.BackupTarget">
+            <view extends="_local">
+                <property name="folders" fetch="JOIN" view="_minimal"/>
+                <property name="backupSphere" view="_minimal"/>
+                <property name="fileDataFetcher" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="foldersDc" property="folders"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="backupTargetDc">
+            <column width="350px">
+                <pickerField id="backupSphereField" property="backupSphere"/>
+                <checkBox id="activeField" property="active"/>
+                <textField id="nameField" property="name"/>
+                <pickerField id="fileDataFetcherField" property="fileDataFetcher">
+                    <actions>
+                        <action id="open" type="picker_open" openType="DIALOG"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <groupBox id="foldersBox" caption="msg://com.allpiper.backmon.entity.backup/BackupTarget.folders">
+            <table id="foldersTable" dataContainer="foldersDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="folderPath"/>
+                    <column id="lastScan"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="foldersTable.create"/>
+                    <button action="foldersTable.edit"/>
+                    <button action="foldersTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://fileDataFetcherEdit.caption"
+        focusComponent="form"
+        messagesPack="com.allpiper.backmon.web.screens.filedatafetcher">
+    <data>
+        <instance id="fileDataFetcherDc"
+                  class="com.allpiper.backmon.fetcher.FileDataFetcher">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="fileDataFetcherDc">
+            <column width="350px">
+                <lookupField id="typeField" property="type"/>
+                <textField id="nameField" property="name"/>
+                <textArea id="scriptField" property="script" rows="5"/>
+                <textField id="scriptLanguageField" property="scriptLanguage"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

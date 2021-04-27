@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.allpiper.backmon"/>
+    
+    <gui:screens base-packages="com.allpiper.backmon.web"/>
+    <bean id="backmon_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="backmon_BackupCheckService" value="com.allpiper.backmon.service.BackupCheckService"/>
+                <entry key="backmon_FileDataFetcherService"
+                       value="com.allpiper.backmon.service.FileDataFetcherService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

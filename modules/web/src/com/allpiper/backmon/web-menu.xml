@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-backmon" insertBefore="administration" caption="mainMsg://menu_config.application-backmon">
+        <item screen="backmon_BackupSphere.browse" caption="mainMsg://menu_config.backmon_BackupSphere.browse"/>
+        <item screen="backmon_BackupTarget.browse" caption="mainMsg://menu_config.backmon_BackupTarget.browse"/>
+    </menu>
+</menu-config>
