@@ -28,6 +28,7 @@ create table BACKMON_BACKUP_TARGET (
     BACKUP_SPHERE_ID varchar(36),
     ACTIVE boolean not null,
     NAME varchar(255),
+    PARENT_FOLDER varchar(255),
     FILE_DATA_FETCHER_ID varchar(36),
     --
     primary key (ID)
@@ -112,11 +113,14 @@ create table BACKMON_BACKUP_CHECK (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
+    ACTIVE boolean not null,
     COMPARE_ORIGIN_ID varchar(36) not null,
     COMPARE_TARGET_ID varchar(36) not null,
     CHECK_ATTRIBUTE_MODE varchar(50) not null,
     CHECK_FILES_MODE varchar(50) not null,
     CHECK_FOLDERS_MODE varchar(50) not null,
+    LAST_RESULT longvarchar,
+    LAST_RESULT_HAD_ERRORS boolean not null,
     --
     primary key (ID)
 )^

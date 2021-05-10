@@ -9,6 +9,10 @@ import javax.validation.constraints.NotNull
 @javax.persistence.Entity(name = "backmon_BackupCheck")
 open class BackupCheck : StandardEntity() {
     @NotNull
+    @Column(name = "ACTIVE", nullable = false)
+    var active: Boolean? = true
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "COMPARE_ORIGIN_ID")
     var compareOrigin: BackupTarget? = null
@@ -30,6 +34,14 @@ open class BackupCheck : StandardEntity() {
     @Column(name = "CHECK_FOLDERS_MODE", nullable = false)
     private var checkFoldersMode: String? = BackupCheckBackupFoldersCompareMode.ORIGIN_EXISTS_IN_TARGET.id
 
+    @Lob
+    @Column(name = "LAST_RESULT")
+    var lastResult: String? = null
+
+    @NotNull
+    @Column(name = "LAST_RESULT_HAD_ERRORS", nullable = false)
+    var lastResultHadErrors: Boolean? = false
+
     fun getCheckFoldersMode(): BackupCheckBackupFoldersCompareMode? = checkFoldersMode?.let { BackupCheckBackupFoldersCompareMode.fromId(it) }
 
     fun setCheckFoldersMode(checkFoldersMode: BackupCheckBackupFoldersCompareMode?) {
@@ -47,6 +59,12 @@ open class BackupCheck : StandardEntity() {
     fun setCheckAttributeMode(checkAttributeMode: BackupCheckAttributeMode?) {
         this.checkAttributeMode = checkAttributeMode?.id
     }
+
+    fun toCaptionString(): String {
+        return "${compareOrigin?.name} -> ${compareTarget?.name}"
+//        return "${compareOrigin?.name} -> ${compareTarget?.name}${if (lastResultHadErrors == true) " FAILED" else ""}"
+    }
+
 
     companion object {
         private const val serialVersionUID = -1685619944554324742L

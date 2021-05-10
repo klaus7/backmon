@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
+    <view entity="backmon_BackupTarget" name="backupTarget-view" extends="_local">
+        <property name="folders" view="_minimal"/>
+        <property name="fileDataFetcher" view="_local"/>
+    </view>
+    <view entity="backmon_BackupFolder" name="backupFolder-files-view" extends="_local">
+        <property name="files" view="_local"/>
+    </view>
 </views>

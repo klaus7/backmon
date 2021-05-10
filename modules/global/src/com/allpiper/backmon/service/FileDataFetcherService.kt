@@ -7,5 +7,6 @@ interface FileDataFetcherService {
         const val NAME = "backmon_FileDataFetcherService"
     }
 
+    fun updateFiles(target: BackupTarget)
     fun fetchFiles(target: BackupTarget)
 }

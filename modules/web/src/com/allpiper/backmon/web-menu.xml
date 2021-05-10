@@ -3,5 +3,6 @@
     <menu id="application-backmon" insertBefore="administration" caption="mainMsg://menu_config.application-backmon">
         <item screen="backmon_BackupSphere.browse" caption="mainMsg://menu_config.backmon_BackupSphere.browse"/>
         <item screen="backmon_BackupTarget.browse" caption="mainMsg://menu_config.backmon_BackupTarget.browse"/>
+        <item screen="backmon_BackupCheck.browse" caption="mainMsg://menu_config.backmon_BackupCheck.browse"/>
     </menu>
 </menu-config>

@@ -38,6 +38,7 @@
             <columns>
                 <column id="active"/>
                 <column id="name"/>
+                <column id="parentFolder"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

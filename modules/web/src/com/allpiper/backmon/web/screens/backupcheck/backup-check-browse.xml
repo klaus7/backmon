@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://backupCheckBrowse.caption"
+        focusComponent="backupChecksTable"
+        messagesPack="com.allpiper.backmon.web.screens.backupcheck">
+    <data readOnly="true">
+        <collection id="backupChecksDc"
+                    class="com.allpiper.backmon.entity.backup.check.BackupCheck">
+            <view extends="_local">
+                <property name="compareOrigin" view="_minimal"/>
+                <property name="compareTarget" view="_minimal"/>
+            </view>
+            <loader id="backupChecksDl">
+                <query>
+                    <![CDATA[select e from backmon_BackupCheck e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="backupChecksTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="backupChecksTable"
+                dataLoader="backupChecksDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="backupChecksTable"
+                    width="100%"
+                    dataContainer="backupChecksDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="runCheck" caption="msg://runCheck" />
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="compareOrigin"/>
+                <column id="compareTarget"/>
+                <column id="checkAttributeMode"/>
+                <column id="checkFilesMode"/>
+                <column id="checkFoldersMode"/>
+<!--                <column id="lastResult"/>-->
+                <column id="lastResultHadErrors"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="runCheckBtn" action="backupChecksTable.runCheck" stylename="friendly"/>
+                <button id="createBtn" action="backupChecksTable.create"/>
+                <button id="editBtn" action="backupChecksTable.edit"/>
+                <button id="removeBtn" action="backupChecksTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

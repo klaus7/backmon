@@ -24,6 +24,10 @@ open class BackupTarget : StandardEntity() {
     @Column(name = "NAME")
     var name: String? = null
 
+    /** parent folder path will be removed from folder paths. */
+    @Column(name = "PARENT_FOLDER")
+    var parentFolder: String? = null
+
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "backupTarget")

@@ -15,12 +15,17 @@ class LocalFileDataFetcherAction {
     private lateinit var dataManager: DataManager
 
     fun fetch(target: BackupTarget, folder: BackupFolder) {
+        val parentFolder = target.parentFolder
         Files.walkFileTree(Paths.get(folder.folderPath), object : SimpleFileVisitor<Path>() {
             override fun visitFile(file: Path?, attrs: BasicFileAttributes?): FileVisitResult {
                 if (file != null && attrs != null) {
                     dataManager.create(BackupFile::class.java).also {
                         it.backupFolder = folder
-                        it.filePath = file.toString()
+                        if (parentFolder != null) {
+                            it.filePath = file.toString().removePrefix(parentFolder)
+                        } else {
+                            it.filePath = file.toString()
+                        }
                         it.sizeInBytes = attrs.size()
                         // it.md5sum
                         dataManager.commit(it)

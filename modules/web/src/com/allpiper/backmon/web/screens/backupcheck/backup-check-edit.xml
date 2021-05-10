@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://backupCheckEdit.caption"
+        focusComponent="form"
+        messagesPack="com.allpiper.backmon.web.screens.backupcheck">
+    <data>
+        <instance id="backupCheckDc"
+                  class="com.allpiper.backmon.entity.backup.check.BackupCheck">
+            <view extends="_local">
+                <property name="compareOrigin" view="_minimal"/>
+                <property name="compareTarget" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="backupCheckDc">
+            <column width="350px">
+                <pickerField id="compareOriginField" property="compareOrigin">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <pickerField id="compareTargetField" property="compareTarget">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <lookupField id="checkAttributeModeField" property="checkAttributeMode"/>
+                <lookupField id="checkFilesModeField" property="checkFilesMode"/>
+                <lookupField id="checkFoldersModeField" property="checkFoldersMode"/>
+                <textArea id="lastResultField" property="lastResult" rows="5"/>
+                <checkBox id="lastResultHadErrorsField" property="lastResultHadErrors"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

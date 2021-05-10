@@ -6,7 +6,7 @@ import com.haulmont.cuba.core.entity.StandardEntity
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
-@NamePattern(value = "%s|name")
+@NamePattern(value = "%s %s|type,name")
 @Table(name = "BACKMON_FILE_DATA_FETCHER")
 @Entity(name = "backmon_FileDataFetcher")
 open class FileDataFetcher : StandardEntity() {

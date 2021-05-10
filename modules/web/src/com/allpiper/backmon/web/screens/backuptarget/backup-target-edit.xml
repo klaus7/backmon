@@ -28,6 +28,7 @@
                         <action id="open" type="picker_open" openType="DIALOG"/>
                     </actions>
                 </pickerField>
+                <textField id="parentFolderField" property="parentFolder"/>
             </column>
         </form>
         <groupBox id="foldersBox" caption="msg://com.allpiper.backmon.entity.backup/BackupTarget.folders">
